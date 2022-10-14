@@ -5,11 +5,16 @@ import Comment from "./Comment";
 function DetailList() {
   return (
     <Div>
-      <Box>
-        <label>제목</label>
-        <input></input>
-        <Comment />
-      </Box>
+      <form>
+        <Box>
+          <label>제목</label>
+          <input /> <br />
+          <label></label>
+          <textarea />
+        </Box>
+      </form>
+      {/* 글쓰기 기능은 textarea */}
+      <Comment />
     </Div>
   );
 }
@@ -27,15 +32,30 @@ const Box = styled.div`
   width: 600px;
   height: 800px;
   border-radius: 20px;
-  display: flex;
   margin: 0 auto;
   margin-top: 40px;
   & input {
     height: 30px;
     width: 300px;
     border: none;
-    background-color: #d3d8e2;
+    background-color: #eaeef6;
     border-radius: 10px;
+    margin-top: 20px;
+    margin-left: 50px;
+  }
+  & label {
+    margin-top: 30px;
+    margin-left: 50px;
+    font-size: 14px;
+  }
+  & textarea {
+    height: 500px;
+    width: 500px;
+    border: none;
+    background-color: #eaeef6;
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-left: 50px;
   }
 `;
 
