@@ -1,13 +1,20 @@
 //메뉴바, 리스트가 포함되어 있는 페이지입니다
 import styled from "styled-components";
 import { FiHome, FiFolder, FiEdit } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
 
 function Header() {
+  const navigate = useNavigate();
+
   return (
     <div>
       <Box>
         <Icon />
-        <Icon4 />
+        <Icon4
+          onClick={() => {
+            navigate("/write");
+          }}
+        />
         <Icon3 />
       </Box>
     </div>

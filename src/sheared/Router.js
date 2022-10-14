@@ -1,14 +1,16 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import DetailList from "../DetailComponent/DetailList";
+import Write from "../WriteComponent/Write";
 import Web from "../pages/Web";
+import Detail from "../DetailComponent/Detail";
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Web />} />
-        <Route path="/detail" element={<DetailList />} />
+        <Route path="/write" element={<Write />} />
+        <Route path="/detail" element={<Detail />} />
       </Routes>
     </BrowserRouter>
   );
