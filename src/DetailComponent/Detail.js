@@ -2,12 +2,19 @@
 import styled from "styled-components";
 import Comment from "./Comment";
 import { FiCheck } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
 
 function Detail() {
+  const navigate = useNavigate();
+
   return (
     <Page>
       <WriteBox>
-        <Icon1>돌아가기</Icon1>
+        <Icon1
+          onClick={() => {
+            navigate("/");
+          }}
+        ></Icon1>
         <h2>제목</h2>
         <p>내용</p>
         <Comment />
@@ -42,7 +49,7 @@ const Page = styled.div`
 `;
 
 const Icon1 = styled(FiCheck)`
-  font-size: 30px;
+  font-size: 25px;
   color: #6a778e;
   margin-left: 600px;
   margin-top: 40px;

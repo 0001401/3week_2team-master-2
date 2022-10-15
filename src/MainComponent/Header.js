@@ -9,7 +9,11 @@ function Header() {
   return (
     <div>
       <Box>
-        <Icon />
+        <Icon
+          onClick={() => {
+            navigate("/");
+          }}
+        />
         <Icon4
           onClick={() => {
             navigate("/write");
