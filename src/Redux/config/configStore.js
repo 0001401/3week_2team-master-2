@@ -5,7 +5,7 @@ import { configureStore } from "@reduxjs/toolkit";
  * import 해온 것은 slice.reducer 입니다.
  */
 
-import mainReducer from "../modules/mainSlice";
+import mainReducer from "../modules/main";
 
 /**
  * 모듈(Slice)이 여러개인 경우

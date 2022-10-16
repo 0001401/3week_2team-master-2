@@ -2,7 +2,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { deleteTodo, findTodo } from "../../Redux/modules/mainSlice";
+import { deleteTodo, findTodo } from "../../Redux/modules/main";
 
 function List() {
   const navigate = useNavigate();

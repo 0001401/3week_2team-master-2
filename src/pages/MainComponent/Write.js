@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Comment from "../DetailComponent/Comment";
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
-import { addTodo } from "../../Redux/modules/mainSlice";
+import { addTodo } from "../../Redux/modules/main";
 
 function DetailList() {
   const navigate = useNavigate();
