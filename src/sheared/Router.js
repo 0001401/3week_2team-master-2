@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Write from "../WriteComponent/Write";
+import Write from "../pages/MainComponent/Write";
 import Web from "../pages/Web";
-import Detail from "../DetailComponent/Detail";
+import Detail from "../pages/DetailComponent/Detail";
 
 const Router = () => {
   return (

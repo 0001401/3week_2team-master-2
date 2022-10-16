@@ -1,6 +1,6 @@
-import List from "../MainComponent/List";
+import List from "./MainComponent/List";
 import styled from "styled-components";
-import Header from "../MainComponent/Header";
+import Header from "./MainComponent/Header";
 
 function Web() {
   return (
