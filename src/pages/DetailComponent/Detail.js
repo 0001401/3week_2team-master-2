@@ -2,10 +2,15 @@
 import styled from "styled-components";
 import Comment from "./Comment";
 import { FiCheck } from "react-icons/fi";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function Detail() {
   const navigate = useNavigate();
+  const { main } = useSelector((state) => state.main);
+  console.log(main);
+  const { id } = useParams();
+  console.log(id);
 
   return (
     <Page>
@@ -17,6 +22,7 @@ function Detail() {
         ></Icon1>
         <h2>제목</h2>
         <p>내용</p>
+        <button>수정하기</button>
         <Comment />
       </WriteBox>
     </Page>

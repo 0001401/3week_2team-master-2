@@ -1,23 +1,51 @@
 // 작성된 글들이 목록 형식으로 보여질 페이지입니다
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { deleteTodo, findTodo } from "../../Redux/modules/mainSlice";
 
 function List() {
   const navigate = useNavigate();
+  const { main } = useSelector((state) => state.main);
+  const dispatch = useDispatch();
+
+  const onDeleteHandler = (id) => {
+    // id라는 이름을 정해줘야 알아먹음
+    dispatch(deleteTodo({ id: id }));
+  };
+
+  const onChangeHandler = (id) => {
+    dispatch(findTodo({ id: id }));
+    navigate(`/detail/${id}`);
+  };
 
   return (
     <MainBox>
-      <ListBox>
-        <Button
-          onClick={() => {
-            navigate("/detail");
-          }}
-        >
-          더보기
-        </Button>
-        <h2>제목</h2>
-        <p>내용</p>
-      </ListBox>
+      {main && main.length > 0 ? (
+        main.map((main) => {
+          return (
+            <ListBox key={main.id} id={main.id}>
+              <Button
+                onClick={() => {
+                  navigate("/detail");
+                }}
+              >
+                더보기
+              </Button>
+              <h2>{main.id}</h2>
+              <h2>{main.title}</h2>
+              <p>{main.content}</p>
+              <button onClick={() => onDeleteHandler(main.id)}>삭제하기</button>
+            </ListBox>
+          );
+        })
+      ) : (
+        <ListBox>
+          <Button onClick={() => onChangeHandler(main.id)}>더보기</Button>
+          <h2>툴킷</h2>
+          <p>거지같은데</p>
+        </ListBox>
+      )}
     </MainBox>
   );
 }

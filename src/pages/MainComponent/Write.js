@@ -2,28 +2,63 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Comment from "../DetailComponent/Comment";
+import { useSelector, useDispatch } from "react-redux";
+import { useState } from "react";
+import { addTodo } from "../../Redux/modules/mainSlice";
 
 function DetailList() {
   const navigate = useNavigate();
+  const { main } = useSelector((state) => state.main);
+
+  const id = main[main.length - 1]?.id + 1 || 0;
+  const dispatch = useDispatch();
+  const [title, setTitle] = useState();
+  const [content, setContent] = useState();
+
+  //추가하기
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
+    const input = { id, title, content, isDone: false };
+    dispatch(addTodo(input));
+    setTitle("");
+    setContent("");
+  };
 
   return (
     <Div>
       <Box>
-        <form>
-          <Label>작성하기</Label>
-          <br />
-          <input placeholder="제목" /> <br />
+        <form onSubmit={onSubmitHandler}>
           <label></label>
-          <textarea placeholder="내용을 적어주세요" />
+          <input
+            type="text"
+            name="title"
+            onChange={(e) => {
+              setTitle(e.target.value);
+            }}
+            value={title || ""}
+            placeholder="제목"
+          />
+          <br />
+          <label></label>
+          <textarea
+            type="text"
+            name="content"
+            onChange={(e) => {
+              setContent(e.target.value);
+            }}
+            value={content || ""}
+            placeholder="내용을 적어주세요"
+          />
           <Boxbtn>
             <button
-              onClick={() => {
+              type="button"
+              onClick={(e) => {
                 navigate("/");
               }}
             >
               취소
             </button>
-            <button>작성하기</button>
+            <button type="submit">작성하기</button>
           </Boxbtn>
         </form>
       </Box>
@@ -43,7 +78,7 @@ const Box = styled.div`
   box-shadow: 0 0 40px rgba(0, 0, 0, 0.03);
   background-color: #fff;
   width: 600px;
-  height: 700px;
+  height: 800px;
   border-radius: 20px;
   margin: 0 auto;
   margin-top: 40px;
@@ -53,31 +88,24 @@ const Box = styled.div`
     border: none;
     background-color: #eaeef6;
     border-radius: 10px;
-
+    margin-top: 50px;
     margin-left: 25%;
   }
   & textarea {
-    height: 300px;
-    width: 300px;
-    display: flex;
-    justify-content: center;
+    height: 500px;
+    width: 500px;
     border: none;
     background-color: #eaeef6;
     border-radius: 10px;
-    margin: 40px 40px 30px 130px;
+    margin: 40px 20px 0px 50px;
+  }
+  & textarea::placeholder {
     padding: 20px;
   }
   & input::placeholder {
     padding: 10px;
     font-size: 12px;
   }
-`;
-
-const Label = styled.label`
-  display: flex;
-  justify-content: center;
-  padding-top: 40px;
-  padding-bottom: 20px;
 `;
 
 const Boxbtn = styled.div`
