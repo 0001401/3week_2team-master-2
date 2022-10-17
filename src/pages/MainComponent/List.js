@@ -48,8 +48,9 @@ function List() {
           >
             더보기
           </Button>
-          <h2>툴킷</h2>
-          <p>거지같은데</p>
+
+          <h2>리액트</h2>
+          <p>어렵습니다</p>
         </ListBox>
       )}
     </MainBox>

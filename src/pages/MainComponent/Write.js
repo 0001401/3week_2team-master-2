@@ -3,25 +3,29 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Comment from "../DetailComponent/Comment";
 import { useSelector, useDispatch } from "react-redux";
-import { useState } from "react";
 import { addTodo } from "../../Redux/modules/main";
+import useInput from "../../pages/MainComponent/hooks/useInput";
 
 function DetailList() {
   const navigate = useNavigate();
   const { main } = useSelector((state) => state.main);
+  const [title, ChangeTitleHadler] = useInput();
+  const [content, ChangeContentHadler] = useInput();
 
   const id = main[main.length - 1]?.id + 1 || 0;
   const dispatch = useDispatch();
-  const [title, setTitle] = useState();
-  const [content, setContent] = useState();
+  // const [title, setTitle] = useState();
+  // const [content, setContent] = useState();
+  // const ChangeTitleHadler = (e) => {
+  //   setTitle(e.target.value);
+  // };
 
   //추가하기
   const onSubmitHandler = (e) => {
     e.preventDefault();
     const input = { id, title, content, isDone: false };
     dispatch(addTodo(input));
-    setTitle("");
-    setContent("");
+    input("");
   };
 
   return (
@@ -32,9 +36,7 @@ function DetailList() {
           <input
             type="text"
             name="title"
-            onChange={(e) => {
-              setTitle(e.target.value);
-            }}
+            onChange={ChangeTitleHadler}
             value={title || ""}
             placeholder="제목"
           />
@@ -43,9 +45,7 @@ function DetailList() {
           <textarea
             type="text"
             name="content"
-            onChange={(e) => {
-              setContent(e.target.value);
-            }}
+            onChange={ChangeContentHadler}
             value={content || ""}
             placeholder="내용을 적어주세요"
           />

@@ -21,6 +21,7 @@ function Detail() {
 
         <h2>{main[id].title}</h2>
         <p>{main[id].content}</p>
+        <input type="text"></input>
         <button>수정하기</button>
         <Comment />
       </WriteBox>
