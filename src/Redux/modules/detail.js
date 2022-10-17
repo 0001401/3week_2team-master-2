@@ -1,32 +1,42 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { addCommentApi } from "../../api/detailapi";
+import axios from "axios";
+import { addCommentApi, getCommentListApi } from "../../api/detailapi";
 
 export const __addComment = createAsyncThunk(
-  "addComment",
-  async (payload, thunkAPI) => {
-    const postId = thunkAPI.getState().post.post.id;
-    const comment = { comment: payload, postId };
-    await addCommentApi(comment);
+  "addCommentThunk",
+  (payload, thunkAPI) => {
+    addCommentApi(payload);
 
-    thunkAPI.dispatch(addComment(comment));
+    thunkAPI.dispatch(addComment(payload));
   }
 );
 
-let commentSlice = createSlice({
+export const __getCommentList = createAsyncThunk(
+  "addCommentList",
+  async (_, thunkAPI) => {
+    const list = await getCommentListApi();
+    thunkAPI.dispatch(getCommentList(list));
+  }
+);
+
+const initialState = {
+  comments: [],
+};
+
+let comment = createSlice({
   name: "comment",
-  initialState: [],
+  initialState,
   reducers: {
+    addComment: (state, action) => {
+      const id = state.comments[state.comments?.length - 1].id + 1 || 1;
+      state.comments.push(action.payload);
+    },
     getCommentList: (state, action) => {
       state.comments = action.payload;
-    },
-    addComment: (state, action) => {
-      const id = state.comment[state.comments.length - 1]?.id + 1 || 1;
-
-      state.comment.push({ id, ...action.payload });
     },
   },
 });
 
-export const { getCommentList, addComment } = commentSlice.actions;
+export const { addComment, getCommentList } = comment.actions;
 
-export default commentSlice.reducer;
+export default comment.reducer;
