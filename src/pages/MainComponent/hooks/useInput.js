@@ -5,6 +5,7 @@ function useInput() {
 
   const hadler = (e) => {
     setValue(e.target.value);
+    setValue("");
   };
 
   return [value, hadler];
