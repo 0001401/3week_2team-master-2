@@ -23,6 +23,8 @@ function Detail() {
         <p>{main[id].content}</p>
         <input type="text"></input>
         <button>수정하기</button>
+        <h2>제목</h2>
+        <Body>내용</Body>
         <Comment />
       </WriteBox>
     </Page>
@@ -41,10 +43,11 @@ const WriteBox = styled.div`
     text-align: center;
     padding: 10px;
   }
-  & p {
-    padding: 30px;
-    margin-left: 50px;
-  }
+`;
+
+const Body = styled.p`
+  padding: 30px;
+  margin-left: 50px;
 `;
 
 const Page = styled.div`

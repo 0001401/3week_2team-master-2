@@ -9,23 +9,19 @@ import useInput from "../../pages/MainComponent/hooks/useInput";
 function DetailList() {
   const navigate = useNavigate();
   const { main } = useSelector((state) => state.main);
-  const [title, ChangeTitleHadler] = useInput();
-  const [content, ChangeContentHadler] = useInput();
+  const [title, ChangeTitleHandler] = useInput("");
+  const [content, ChangeContentHandler] = useInput("");
 
   const id = main[main.length - 1]?.id + 1 || 0;
   const dispatch = useDispatch();
-  // const [title, setTitle] = useState();
-  // const [content, setContent] = useState();
-  // const ChangeTitleHadler = (e) => {
-  //   setTitle(e.target.value);
-  // };
 
   //추가하기
   const onSubmitHandler = (e) => {
     e.preventDefault();
     const input = { id, title, content, isDone: false };
     dispatch(addTodo(input));
-    input("");
+    ChangeTitleHandler("");
+    ChangeContentHandler("");
   };
 
   return (
@@ -36,7 +32,7 @@ function DetailList() {
           <input
             type="text"
             name="title"
-            onChange={ChangeTitleHadler}
+            onChange={(e) => ChangeTitleHandler(e)}
             value={title || ""}
             placeholder="제목"
           />
@@ -45,7 +41,7 @@ function DetailList() {
           <textarea
             type="text"
             name="content"
-            onChange={ChangeContentHadler}
+            onChange={(e) => ChangeContentHandler(e)}
             value={content || ""}
             placeholder="내용을 적어주세요"
           />
