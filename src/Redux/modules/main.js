@@ -16,7 +16,7 @@ const mainSlice = createSlice({
       // push는 muate하고
       state.main.push(action.payload);
     },
-    // 삭제하기git checkout -b soyoung
+    // 삭제하기
     deleteTodo: (state, action) => {
       // 아이디값 지정
       const { id } = action.payload;

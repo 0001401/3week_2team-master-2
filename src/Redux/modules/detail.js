@@ -1,9 +1,21 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { addCommentApi } from "../../api/detailapi";
+
+export const __addComment = createAsyncThunk(
+  "addComment",
+  async (payload, thunkAPI) => {
+    const postId = thunkAPI.getState().post.post.id;
+    const comment = { comment: payload, postId };
+    await addCommentApi(comment);
+
+    thunkAPI.dispatch(addComment(comment));
+  }
+);
 
 let commentSlice = createSlice({
   name: "comment",
   initialState: [],
-  reducer: {
+  reducers: {
     getCommentList: (state, action) => {
       state.comments = action.payload;
     },
