@@ -1,5 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
+import detail from "../modules/detail";
 
-export default configureStore({
-  reducer: {},
+const store = configureStore({
+  reducer: {
+    detail,
+  },
 });
+
+export default store;

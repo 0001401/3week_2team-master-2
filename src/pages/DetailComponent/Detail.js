@@ -16,7 +16,7 @@ function Detail() {
           }}
         ></Icon1>
         <h2>제목</h2>
-        <p>내용</p>
+        <Body>내용</Body>
         <Comment />
       </WriteBox>
     </Page>
@@ -35,10 +35,11 @@ const WriteBox = styled.div`
     text-align: center;
     padding: 10px;
   }
-  & p {
-    padding: 30px;
-    margin-left: 50px;
-  }
+`;
+
+const Body = styled.p`
+  padding: 30px;
+  margin-left: 50px;
 `;
 
 const Page = styled.div`

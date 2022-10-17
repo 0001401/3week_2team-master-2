@@ -1,16 +1,51 @@
 // 작성된 글을 확인시 댓글창을 구현할 페이지입니다
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import { addComment } from "../../Redux/modules/detail";
 
 function Comment() {
+  const init = { nickname: "", body: "" };
+  const [comment, setComment] = useState(init);
+
+  const dispatch = useDispatch();
+
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
+    dispatch(addComment());
+    setComment(init);
+  };
+
+  const onChangeHandler = (event) => {
+    const { name, value } = event.target;
+    setComment({ ...comment, [name]: value });
+  };
+
   return (
     <CommentBox>
-      <form>
+      <form onSubmit={onSubmitHandler}>
         <Label>닉네임</Label>
-        <Input2 />
+        <Input2
+          type="text"
+          name="nickname"
+          value={comment.nickname}
+          onChange={onChangeHandler}
+        />
         <Label>내용</Label>
-        <Input />
-        <button>댓글달기</button>
+        <Input
+          type="text"
+          name="body"
+          value={comment.body}
+          onChange={onChangeHandler}
+        />
+
+        <button type={"submit"}>Add</button>
       </form>
+      <CommentBox2>
+        <h4>{comment.nickname} &nbsp;&nbsp;</h4>
+        <p>{comment.body}</p>
+        <p>&nbsp;수정/삭제</p>
+      </CommentBox2>
     </CommentBox>
   );
 }
@@ -52,6 +87,16 @@ const Input2 = styled.input`
 
 const Label = styled.label`
   margin-left: 40px;
+`;
+
+const CommentBox2 = styled.div`
+  padding: 10px;
+  margin-left: 40px;
+  margin-top: 10px;
+  width: 500px;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  display: inline-flex;
 `;
 
 export default Comment;
