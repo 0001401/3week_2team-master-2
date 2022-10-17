@@ -2,7 +2,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { deleteTodo, findTodo } from "../../Redux/modules/main";
+import { deleteTodo } from "../../Redux/modules/main";
 
 function List() {
   const navigate = useNavigate();
@@ -14,10 +14,10 @@ function List() {
     dispatch(deleteTodo({ id: id }));
   };
 
-  const onChangeHandler = (id) => {
-    dispatch(findTodo({ id: id }));
-    navigate(`/detail/${id}`);
-  };
+  // const onChangeHandler = (id) => {
+  //   dispatch(findTodo({ id: id }));
+  //   navigate(`/detail/${id}`);
+  // };
 
   return (
     <MainBox>
@@ -27,7 +27,7 @@ function List() {
             <ListBox key={main.id} id={main.id}>
               <Button
                 onClick={() => {
-                  navigate("/detail");
+                  navigate("/detail/" + main.id);
                 }}
               >
                 더보기
@@ -41,7 +41,13 @@ function List() {
         })
       ) : (
         <ListBox>
-          <Button onClick={() => onChangeHandler(main.id)}>더보기</Button>
+          <Button
+            onClick={() => {
+              navigate("/detail/");
+            }}
+          >
+            더보기
+          </Button>
           <h2>툴킷</h2>
           <p>거지같은데</p>
         </ListBox>

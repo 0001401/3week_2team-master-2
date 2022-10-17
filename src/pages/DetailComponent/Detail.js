@@ -8,9 +8,7 @@ import { useSelector } from "react-redux";
 function Detail() {
   const navigate = useNavigate();
   const { main } = useSelector((state) => state.main);
-  console.log(main);
   const { id } = useParams();
-  console.log(id);
 
   return (
     <Page>
@@ -20,8 +18,9 @@ function Detail() {
             navigate("/");
           }}
         ></Icon1>
-        <h2>제목</h2>
-        <p>내용</p>
+
+        <h2>{main[id].title}</h2>
+        <p>{main[id].content}</p>
         <button>수정하기</button>
         <Comment />
       </WriteBox>
