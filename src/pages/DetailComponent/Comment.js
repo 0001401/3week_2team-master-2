@@ -2,11 +2,14 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { __addComment, __getCommentList } from "../../Redux/modules/detail";
+import {
+  __delComment,
+  __addComment,
+  __getCommentList,
+} from "../../Redux/modules/detail";
 
 function Comment() {
   const dispatch = useDispatch();
-
   const init = { nickname: "", body: "" };
   const [comment, setComment] = useState(init);
 
@@ -35,6 +38,7 @@ function Comment() {
         onSubmit={(e) => {
           e.preventDefault();
           dispatch(__addComment(comment));
+          // setComment(init);
         }}
       >
         <Label>닉네임</Label>
@@ -49,11 +53,17 @@ function Comment() {
         <button>Add</button>
       </form>
       {comments.map((comment) => {
+        const { id } = comment;
         return (
-          <CommentBox2>
+          <CommentBox2 key={id}>
             <h4 key={comment?.id}>{comment.nickname}</h4>
             <p>{comment.body}</p>
-            <p>&nbsp;수정/삭제</p>
+            <Box>
+              <button>수정</button>
+              <button onClick={() => dispatch(__delComment(comment.id))}>
+                삭제
+              </button>
+            </Box>
           </CommentBox2>
         );
       })}
@@ -98,6 +108,16 @@ const Input2 = styled.input`
 
 const Label = styled.label`
   margin-left: 40px;
+`;
+
+const Box = styled.div`
+  & button {
+    border-radius: 10px;
+    background-color: white;
+    width: 40px;
+    height: 25px;
+    margin-left: 5px;
+  }
 `;
 
 const CommentBox2 = styled.div`
