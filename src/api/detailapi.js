@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:3001";
+const BASE_URL = "http://localhost:3030";
 
 export const addCommentApi = (comment) => {
   console.log("___", comment);

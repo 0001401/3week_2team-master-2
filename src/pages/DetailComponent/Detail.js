@@ -9,6 +9,7 @@ function Detail() {
   const navigate = useNavigate();
   const { main } = useSelector((state) => state.main);
   const { id } = useParams();
+  console.log(main);
 
   return (
     <Page>
@@ -18,10 +19,18 @@ function Detail() {
             navigate("/");
           }}
         ></Icon1>
-        <h2>{main[id].title}</h2>
-        <p>{main[id].content}</p>
-        <button>수정하기</button>
 
+        <button
+          onClick={() => {
+            navigate("/update/" + id);
+          }}
+        >
+          수정하기
+        </button>
+        <h2>{id}</h2>
+        <Body></Body>
+        {/* <h2>{main[id].title}</h2>
+        <Body>{main[id].content}</Body> */}
         <Comment />
       </WriteBox>
     </Page>
