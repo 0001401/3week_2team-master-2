@@ -7,9 +7,11 @@ import useInput from "../../pages/MainComponent/hooks/useInput";
 
 function DetailList() {
   const navigate = useNavigate();
-  const { main } = useSelector((state) => state.main);
+  const main = useSelector((state) => state.main);
   const [title, ChangeTitleHandler] = useInput("");
   const [content, ChangeContentHandler] = useInput("");
+
+  console.log(main);
 
   const id = main[main.length - 1]?.id + 1 || 0;
   const dispatch = useDispatch();
@@ -27,6 +29,7 @@ function DetailList() {
     // Init Empty Value
     ChangeTitleHandler("");
     ChangeContentHandler("");
+    console.log(input);
   };
 
   return (

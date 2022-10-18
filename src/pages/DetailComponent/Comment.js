@@ -25,9 +25,9 @@ function Comment() {
     });
   };
 
-  useEffect(() => {
-    dispatch(__getCommentList());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(__getCommentList());
+  // }, [dispatch]);
 
   return (
     <CommentBox>
