@@ -18,13 +18,15 @@ function Detail() {
             navigate("/");
           }}
         ></Icon1>
-
+        <button
+          onClick={() => {
+            navigate("/update/" + main.id);
+          }}
+        >
+          수정하기
+        </button>
         <h2>{main[id].title}</h2>
-        <p>{main[id].content}</p>
-        <input type="text"></input>
-        <button>수정하기</button>
-        <h2>제목</h2>
-        <Body>내용</Body>
+        <Body>{main[id].content}</Body>
         <Comment />
       </WriteBox>
     </Page>

@@ -1,44 +1,34 @@
-//글쓰기 페이지
-import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
-import { useSelector, useDispatch } from "react-redux";
-import { __addTodo } from "../../Redux/modules/main";
-import useInput from "../../pages/MainComponent/hooks/useInput";
+import useInput from "./hooks/useInput";
+import { __updateTodo } from "../../Redux/modules/main";
+import { useState } from "react";
 
-function DetailList() {
+function Update() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const { main } = useSelector((state) => state.main);
+
   const [title, ChangeTitleHandler] = useInput("");
   const [content, ChangeContentHandler] = useInput("");
+  const [changeTitle, setChangeTitle] = useState(title);
 
-  const id = main[main.length - 1]?.id + 1 || 0;
-  const dispatch = useDispatch();
-
-  //추가하기
-  const onSubmitHandler = (e) => {
-    e.preventDefault();
-
-    // ID
-    const input = { id, title, content, isDone: false };
-
-    // API POST
-    dispatch(__addTodo(input));
-
-    // Init Empty Value
-    ChangeTitleHandler("");
-    ChangeContentHandler("");
+  const onUpdatetHandler = (e) => {
+    dispatch(__updateTodo());
   };
 
   return (
     <Div>
       <Box>
-        <form onSubmit={onSubmitHandler}>
+        <form>
           <label></label>
           <input
             type="text"
             name="title"
             onChange={(e) => ChangeTitleHandler(e)}
-            value={title || ""}
+            value={setChangeTitle.title}
             placeholder="제목"
           />
           <br />
@@ -54,12 +44,14 @@ function DetailList() {
             <button
               type="button"
               onClick={(e) => {
-                navigate("/");
+                navigate(-1);
               }}
             >
               취소
             </button>
-            <button type="submit">작성하기</button>
+            <button type="button" onClick={(e) => onUpdatetHandler(e)}>
+              수정하기
+            </button>
           </Boxbtn>
         </form>
       </Box>
@@ -125,4 +117,4 @@ const Boxbtn = styled.div`
   }
 `;
 
-export default DetailList;
+export default Update;
