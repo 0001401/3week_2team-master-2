@@ -1,4 +1,5 @@
 
+
 import { configureStore } from "@reduxjs/toolkit";
 import detail from "../modules/detail";
 

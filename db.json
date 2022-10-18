@@ -1,25 +1,18 @@
 {
-  "comments": [
+  "main": [
     {
+      "id": 0,
+      "title": "이건",
+      "content": "예시용 입니다.",
+      "isDone": false
+    }
+  ]
+  "comments": [
+      {
       "nickname": "wefs",
       "body": "dfse",
       "id": 1
-    },
-    {
-      "nickname": "safd",
-      "body": "wer",
-      "id": 2
-    },
-    {
-      "nickname": "asfw",
-      "body": "wefsd",
-      "id": 3
-    },
-    {
-      "nickname": "ㄴㄹㅁㅈ",
-      "body": "ㄴㄹㄷㄹㄴㅇ",
-      "id": 4
     }
-  ]
+   ]
 }
 
