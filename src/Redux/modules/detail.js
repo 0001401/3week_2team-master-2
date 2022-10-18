@@ -28,7 +28,7 @@ let comment = createSlice({
   initialState,
   reducers: {
     addComment: (state, action) => {
-      const id = state.comments[state.comments?.length - 1].id + 1 || 1;
+      const id = state.comments[state.comments.length - 1]?.id + 1 || 1;
       state.comments.push(action.payload);
     },
     getCommentList: (state, action) => {

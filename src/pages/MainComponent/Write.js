@@ -12,13 +12,14 @@ function DetailList() {
   const [content, ChangeContentHandler] = useInput("");
 
   // const id = new Date();
-  const id = main[main.length - 1]?.id + 1 || 0;
+  const id = main[main.length - 1]?.id + 1 || 1;
   const dispatch = useDispatch();
 
   //추가하기
   const onSubmitHandler = (e) => {
     e.preventDefault();
-
+    if (title === "") return alert("제목을 입력하세요");
+    if (content === "") return alert("내용을 입력하세요");
     // ID
     const input = { id, title, content, isDone: false };
 
@@ -28,7 +29,6 @@ function DetailList() {
     // Init Empty Value
     ChangeTitleHandler("");
     ChangeContentHandler("");
-    console.log(input);
   };
 
   return (

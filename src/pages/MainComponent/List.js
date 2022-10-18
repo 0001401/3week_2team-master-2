@@ -11,11 +11,9 @@ function List() {
   const dispatch = useDispatch();
 
   const onDeleteHandler = (id) => {
-    // id라는 이름을 정해줘야 알아먹음
     dispatch(__deleteTodo({ id: id }));
   };
 
-  // API GET
   useEffect(() => {
     dispatch(__getTodo());
   }, [dispatch]);
@@ -57,7 +55,7 @@ const ListBox = styled.div`
   width: 300px;
   height: 200px;
   border-radius: 10px;
-  margin: 20px 0px 40px 40px; //상 오 하 왼
+  margin: 20px 0px 40px 40px;
 
   & h2 {
     margin: 30px 0px 20px 20px;
