@@ -1,5 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { addCommentApi, getCommentListApi } from "../../api/detailapi";
+import axios from "axios";
+import { addCommentApi, getCommentsListApi } from "../../api/detailapi";
 
 export const __addComment = createAsyncThunk(
   "addCommentThunk",
@@ -13,7 +15,8 @@ export const __addComment = createAsyncThunk(
 export const __getCommentList = createAsyncThunk(
   "addCommentList",
   async (_, thunkAPI) => {
-    const list = await getCommentListApi();
+    const list = await getCommentsListApi();
+    console.log(list);
     thunkAPI.dispatch(getCommentList(list));
   }
 );
