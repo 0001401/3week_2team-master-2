@@ -1,22 +1,23 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
-import useInput from "./hooks/useInput";
 import { __updateTodo } from "../../Redux/modules/main";
 import { useState } from "react";
 
 function Update() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const { id } = useParams();
   const { main } = useSelector((state) => state.main);
 
-  const [title, ChangeTitleHandler] = useInput("");
-  const [content, ChangeContentHandler] = useInput("");
-  const [changeTitle, setChangeTitle] = useState(title);
+  const [title, setTitle] = useState(main.title);
+  const [content, setContent] = useState(main.content);
 
   const onUpdatetHandler = (e) => {
-    dispatch(__updateTodo());
+    e.preventDefault();
+    dispatch(__updateTodo({ id, title, content }));
+    setTitle("");
+    setContent("");
   };
 
   return (
@@ -27,8 +28,8 @@ function Update() {
           <input
             type="text"
             name="title"
-            onChange={(e) => ChangeTitleHandler(e)}
-            value={setChangeTitle.title}
+            onChange={(e) => setTitle(e.target.value)}
+            value={title || ""}
             placeholder="제목"
           />
           <br />
@@ -36,7 +37,7 @@ function Update() {
           <textarea
             type="text"
             name="content"
-            onChange={(e) => ChangeContentHandler(e)}
+            onChange={(e) => setContent(e.target.value)}
             value={content || ""}
             placeholder="내용을 적어주세요"
           />
