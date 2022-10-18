@@ -51,7 +51,7 @@ function Comment() {
       {comments.map((comment) => {
         return (
           <CommentBox2>
-            <h4 key={comment?.id}>{comment.comment}</h4>
+            <h4 key={comment?.id}>{comment.nickname}</h4>
             <p>{comment.body}</p>
             <p>&nbsp;수정/삭제</p>
           </CommentBox2>

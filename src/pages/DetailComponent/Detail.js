@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 function Detail() {
   const navigate = useNavigate();
   const { main } = useSelector((state) => state.main);
+
   const { id } = useParams();
 
   return (
@@ -26,8 +27,8 @@ function Detail() {
         >
           수정하기
         </button>
-        <h2>{main[id].title}</h2>
-        <Body>{main[id].content}</Body>
+        {/* <h2>{main[id].title}</h2>
+        <Body>{main[id].content}</Body> */}
         <Comment />
       </WriteBox>
     </Page>
