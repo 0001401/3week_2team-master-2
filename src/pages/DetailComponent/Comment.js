@@ -1,51 +1,62 @@
 // 작성된 글을 확인시 댓글창을 구현할 페이지입니다
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { addComment } from "../../Redux/modules/detail";
+import { __addComment, __getCommentList } from "../../Redux/modules/detail";
 
 function Comment() {
+  const dispatch = useDispatch();
+
   const init = { nickname: "", body: "" };
   const [comment, setComment] = useState(init);
 
-  const dispatch = useDispatch();
+  const comments = useSelector((state) => state.detail.comments);
+  console.log(comments);
 
-  const onSubmitHandler = (e) => {
-    e.preventDefault();
-    dispatch(addComment());
-    setComment(init);
+  const onChangeHandler = (e) => {
+    setComment((prev) => {
+      return { ...prev, nickname: e.target.value };
+    });
   };
 
-  const onChangeHandler = (event) => {
-    const { name, value } = event.target;
-    setComment({ ...comment, [name]: value });
+  const onChangeHandler2 = (e) => {
+    setComment((prev) => {
+      return { ...prev, body: e.target.value };
+    });
   };
+
+  useEffect(() => {
+    dispatch(__getCommentList());
+  }, [dispatch]);
 
   return (
     <CommentBox>
-      <form onSubmit={onSubmitHandler}>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          dispatch(__addComment(comment));
+        }}
+      >
         <Label>닉네임</Label>
         <Input2
-          type="text"
+          maxLength="4"
           name="nickname"
           value={comment.nickname}
           onChange={onChangeHandler}
         />
         <Label>내용</Label>
-        <Input
-          type="text"
-          name="body"
-          value={comment.body}
-          onChange={onChangeHandler}
-        />
-
-        <button type={"submit"}>Add</button>
+        <Input name="body" value={comment.body} onChange={onChangeHandler2} />
+        <button>Add</button>
       </form>
-      <CommentBox2>
-        <h4>{comment.nickname} &nbsp;&nbsp;</h4>
-        <p>{comment.body}</p>
-        <p>&nbsp;수정/삭제</p>
-      </CommentBox2>
+      {comments.map((comment) => {
+        return (
+          <CommentBox2>
+            <h4 key={comment?.id}>{comment.comment}</h4>
+            <p>{comment.body}</p>
+            <p>&nbsp;수정/삭제</p>
+          </CommentBox2>
+        );
+      })}
     </CommentBox>
   );
 }
@@ -97,6 +108,10 @@ const CommentBox2 = styled.div`
   background-color: rgba(255, 255, 255, 0.3);
   border-radius: 10px;
   display: inline-flex;
+  justify-content: space-around;
+  & p {
+    max-width: 20rem;
+  }
 `;
 
 export default Comment;

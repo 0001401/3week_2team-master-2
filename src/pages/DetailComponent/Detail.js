@@ -18,6 +18,7 @@ function Detail() {
             navigate("/");
           }}
         ></Icon1>
+
         <button
           onClick={() => {
             navigate("/update/" + main.id);

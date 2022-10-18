@@ -1,10 +1,13 @@
-import { configureStore } from "@reduxjs/toolkit";
 
-import mainReducer from "../modules/main";
+
+import { configureStore } from "@reduxjs/toolkit";
 import detail from "../modules/detail";
 
 const store = configureStore({
-  reducer: { main: mainReducer, detail },
+  reducer: {
+    detail,
+    main
+  },
 });
 
 export default store;

@@ -5,13 +5,14 @@
       "title": "이건",
       "content": "예시용 입니다.",
       "isDone": false
-    },
-    {
-      "id": 1,
-      "title": "1번",
-      "content": "2번",
-      "isDone": false
     }
-  ],
-  "comments": []
+  ]
+  "comments": [
+      {
+      "nickname": "wefs",
+      "body": "dfse",
+      "id": 1
+    }
+   ]
 }
+
