@@ -18,10 +18,10 @@ function Detail() {
             navigate("/");
           }}
         ></Icon1>
-
         <h2>{main[id].title}</h2>
         <p>{main[id].content}</p>
         <button>수정하기</button>
+
         <Comment />
       </WriteBox>
     </Page>
@@ -40,10 +40,11 @@ const WriteBox = styled.div`
     text-align: center;
     padding: 10px;
   }
-  & p {
-    padding: 30px;
-    margin-left: 50px;
-  }
+`;
+
+const Body = styled.p`
+  padding: 30px;
+  margin-left: 50px;
 `;
 
 const Page = styled.div`

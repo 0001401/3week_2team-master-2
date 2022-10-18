@@ -1,16 +1,62 @@
 // 작성된 글을 확인시 댓글창을 구현할 페이지입니다
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { __addComment, __getCommentList } from "../../Redux/modules/detail";
 
 function Comment() {
+  const dispatch = useDispatch();
+
+  const init = { nickname: "", body: "" };
+  const [comment, setComment] = useState(init);
+
+  const comments = useSelector((state) => state.detail.comments);
+  console.log(comments);
+
+  const onChangeHandler = (e) => {
+    setComment((prev) => {
+      return { ...prev, nickname: e.target.value };
+    });
+  };
+
+  const onChangeHandler2 = (e) => {
+    setComment((prev) => {
+      return { ...prev, body: e.target.value };
+    });
+  };
+
+  useEffect(() => {
+    dispatch(__getCommentList());
+  }, [dispatch]);
+
   return (
     <CommentBox>
-      <form>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          dispatch(__addComment(comment));
+        }}
+      >
         <Label>닉네임</Label>
-        <Input2 />
+        <Input2
+          maxLength="4"
+          name="nickname"
+          value={comment.nickname}
+          onChange={onChangeHandler}
+        />
         <Label>내용</Label>
-        <Input />
-        <button>댓글달기</button>
+        <Input name="body" value={comment.body} onChange={onChangeHandler2} />
+        <button>Add</button>
       </form>
+      {comments.map((comment) => {
+        return (
+          <CommentBox2>
+            <h4 key={comment?.id}>{comment.comment}</h4>
+            <p>{comment.body}</p>
+            <p>&nbsp;수정/삭제</p>
+          </CommentBox2>
+        );
+      })}
     </CommentBox>
   );
 }
@@ -52,6 +98,20 @@ const Input2 = styled.input`
 
 const Label = styled.label`
   margin-left: 40px;
+`;
+
+const CommentBox2 = styled.div`
+  padding: 10px;
+  margin-left: 40px;
+  margin-top: 10px;
+  width: 500px;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  display: inline-flex;
+  justify-content: space-around;
+  & p {
+    max-width: 20rem;
+  }
 `;
 
 export default Comment;
