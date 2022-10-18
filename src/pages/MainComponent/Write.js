@@ -14,7 +14,6 @@ function DetailList() {
   console.log(main);
 
   const id = main[main.length - 1]?.id + 1 || 0;
-  const id = new Date();
   const dispatch = useDispatch();
 
   //추가하기
