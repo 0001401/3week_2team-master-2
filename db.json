@@ -45,19 +45,15 @@
   ],
   "comments": [
     {
-      "nickname": "123",
-      "body": "123",
+      "nickname": "연습",
+      "body": "연습",
+      "id": 1
+    },
+    {
+      "nickname": "연습",
+      "body": "34",
       "id": 2
-    },
-    {
-      "nickname": "24",
-      "body": "24",
-      "id": 3
-    },
-    {
-      "nickname": "123",
-      "body": "123",
-      "id": 4
     }
   ]
 }
+
