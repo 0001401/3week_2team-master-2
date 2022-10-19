@@ -15,9 +15,12 @@ function Update() {
 
   const onUpdatetHandler = (e) => {
     e.preventDefault();
-    if (title === "") return alert("제목을 입력하세요");
-    if (content === "") return alert("내용을 입력하세요");
-    dispatch(__updateTodo({ id, title, content }));
+    // dispatch(__updateTodo({ id, title, content }));
+    if (title && content !== "") {
+      dispatch(__updateTodo({ id, title, content }));
+    } else {
+      return alert("내용을 입력하세요");
+    }
     setTitle("");
     setContent("");
   };

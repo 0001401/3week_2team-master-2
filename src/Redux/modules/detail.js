@@ -1,5 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { addCommentApi, getCommentsListApi } from "../../api/detailapi";
+import {
+  addCommentApi,
+  getCommentsListApi,
+  delCommentApi,
+} from "../../api/detailapi";
 
 export const __addComment = createAsyncThunk(
   "addCommentThunk",
@@ -43,12 +47,8 @@ const comment = createSlice({
   reducers: {
     addComment: (state, action) => {
       const id = state.comments[state.comments.length - 1]?.id + 1 || 1;
-<<<<<<< HEAD
-      state.comments.push(action.payload);
-=======
       const commentCard = { ...action.payload, id };
       state.comments.push(commentCard);
->>>>>>> 4dc6d9b07dcd26187579429e6d0cfb4aa3b8b374
     },
     getCommentList: (state, action) => {
       state.comments = action.payload;

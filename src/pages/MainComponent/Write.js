@@ -18,14 +18,14 @@ function DetailList() {
   //추가하기
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    if (title === "") return alert("제목을 입력하세요");
-    if (content === "") return alert("내용을 입력하세요");
+    // API POST
     // ID
     const input = { id, title, content, isDone: false };
-
-    // API POST
-    dispatch(__addTodo(input));
-
+    if (title && content !== "") {
+      dispatch(__addTodo(input));
+    } else {
+      return alert("내용을 입력하세요");
+    }
     // Init Empty Value
     ChangeTitleHandler("");
     ChangeContentHandler("");
