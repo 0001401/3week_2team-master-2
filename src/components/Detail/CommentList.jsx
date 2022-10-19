@@ -2,13 +2,13 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { __addComment, __getCommentList } from "../../Redux/modules/detail";
+import { __addComment, __getCommentList } from "../../Redux/modules/comment";
 import CommentListItem from "./CommentListItem";
 
-function Comment({ cardId }) {
+function CommentList({ cardId }) {
   const dispatch = useDispatch();
   // 해당 card의 comments 를 useEffect 로 가져옵니다
-  const comments = useSelector((state) => state.detail.comments);
+  const comments = useSelector((state) => state.comment.comments);
   useEffect(() => {
     dispatch(__getCommentList(cardId));
   }, [dispatch, cardId]);
@@ -106,4 +106,4 @@ const Label = styled.label`
   margin-left: 40px;
 `;
 
-export default Comment;
+export default CommentList;

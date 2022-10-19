@@ -1,8 +1,8 @@
-import List from "./MainComponent/List";
+import List from "../components/Main/List";
 import styled from "styled-components";
-import Header from "./MainComponent/Header";
+import Header from "../components/Main/Header";
 
-function Web() {
+function Main() {
   return (
     <WEB>
       <Header />
@@ -18,4 +18,4 @@ const WEB = styled.div`
   overflow: auto;
 `;
 
-export default Web;
+export default Main;

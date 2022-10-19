@@ -1,37 +1,44 @@
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+//글쓰기 페이지
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { __updateTodo } from "../../Redux/modules/main";
-import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { __addTodo } from "../Redux/modules/main";
+import useInput from "../hooks/useInput";
 
-function Update() {
-  const dispatch = useDispatch();
+function DetailList() {
   const navigate = useNavigate();
-  const { id } = useParams();
   const { main } = useSelector((state) => state.main);
+  const [title, ChangeTitleHandler] = useInput("");
+  const [content, ChangeContentHandler] = useInput("");
 
-  const [title, setTitle] = useState(main.title);
-  const [content, setContent] = useState(main.content);
+  // const id = new Date();
+  const id = main[main.length - 1]?.id + 1 || 1;
+  const dispatch = useDispatch();
 
-  const onUpdatetHandler = (e) => {
+  //추가하기
+  const onSubmitHandler = (e) => {
     e.preventDefault();
+    // API POST
+    // ID
+    const input = { id, title, content, isDone: false, comments: [] };
 
-    dispatch(__updateTodo({ id, title, content }));
+    dispatch(__addTodo(input));
+
+    // Init Empty Value
+    ChangeTitleHandler("");
+    ChangeContentHandler("");
     navigate("/");
-
-    setTitle("");
-    setContent("");
   };
 
   return (
     <Div>
       <Box>
-        <form>
+        <form onSubmit={onSubmitHandler}>
           <label></label>
           <input
             type="text"
             name="title"
-            onChange={(e) => setTitle(e.target.value)}
+            onChange={(e) => ChangeTitleHandler(e)}
             value={title || ""}
             placeholder="제목"
             required
@@ -41,7 +48,7 @@ function Update() {
           <textarea
             type="text"
             name="content"
-            onChange={(e) => setContent(e.target.value)}
+            onChange={(e) => ChangeContentHandler(e)}
             value={content || ""}
             placeholder="내용을 적어주세요"
             required
@@ -50,14 +57,12 @@ function Update() {
             <button
               type="button"
               onClick={(e) => {
-                navigate(-1);
+                navigate("/");
               }}
             >
               취소
             </button>
-            <button type="button" onClick={(e) => onUpdatetHandler(e)}>
-              수정하기
-            </button>
+            <button type="submit">작성하기</button>
           </Boxbtn>
         </form>
       </Box>
@@ -123,4 +128,4 @@ const Boxbtn = styled.div`
   }
 `;
 
-export default Update;
+export default DetailList;

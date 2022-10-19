@@ -1,11 +1,11 @@
 // 게시글 조회 페이지
 import styled from "styled-components";
-import Comment from "./Comment";
+import CommentList from "../components/Detail/CommentList";
 import { FiCheck } from "react-icons/fi";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { __getTodo } from "../../Redux/modules/main";
+import { __getTodo } from "../Redux/modules/main";
 
 function Detail() {
   const navigate = useNavigate();
@@ -35,7 +35,7 @@ function Detail() {
         >
           수정하기
         </button>
-        <Comment cardId={id} />
+        <CommentList cardId={id} />
       </WriteBox>
     </Page>
   );
