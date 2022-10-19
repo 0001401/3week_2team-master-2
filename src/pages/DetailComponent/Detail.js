@@ -20,8 +20,8 @@ function Detail() {
             navigate("/");
           }}
         ></Icon1>
-        <h2>{main.title}</h2>
-        <Body>{main.content}</Body>
+        <h2>{main?.title}</h2>
+        <Body>{main?.content}</Body>
         <button
           onClick={() => {
             navigate("/update/" + id);

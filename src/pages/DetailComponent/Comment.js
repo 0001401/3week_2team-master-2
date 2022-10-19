@@ -11,7 +11,7 @@ import {
 
 function Comment() {
   const dispatch = useDispatch();
-  const init = { nickname: "", body: "", cardId:  };
+  const init = { nickname: "", body: "", cardId: 0 };
   const [comment, setComment] = useState(init);
   const [edit, setEdit] = useState(false);
   const [commentEdit, setCommentEdit] = useState("");
