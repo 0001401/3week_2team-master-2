@@ -6,12 +6,15 @@ import {
   __delComment,
   __addComment,
   __getCommentList,
+  __updateComment,
 } from "../../Redux/modules/detail";
 
 function Comment() {
   const dispatch = useDispatch();
-  const init = { nickname: "", body: "" };
+  const init = { nickname: "", body: "", cardId:  };
   const [comment, setComment] = useState(init);
+  const [edit, setEdit] = useState(false);
+  const [commentEdit, setCommentEdit] = useState("");
 
   const comments = useSelector((state) => state.detail.comments);
   console.log(comments);
@@ -57,12 +60,59 @@ function Comment() {
         return (
           <CommentBox2 key={id}>
             <h4 key={comment?.id}>{comment.nickname}</h4>
-            <p>{comment.body}</p>
+            {edit ? (
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  console.log("submit");
+                  setCommentEdit(comment.body);
+                  setEdit(!edit);
+                  dispatch(
+                    __updateComment({
+                      id: comment.id,
+                      nickname: comment.nickname,
+                      edit: { body: commentEdit },
+                    })
+                  );
+                  // setEdit(false);
+                }}
+              >
+                <input
+                  value={commentEdit}
+                  onChange={(e) => setCommentEdit(e.target.value)}
+                />
+                <Box>
+                  <button type="submit">수정</button>
+                </Box>
+              </form>
+            ) : (
+              <div>
+                <p>{comment.body}</p>
+                <Box>
+                  <button
+                    onClick={() => {
+                      setEdit(!edit);
+                    }}
+                  >
+                    수정
+                  </button>
+                  <button onClick={() => dispatch(__delComment(comment.id))}>
+                    삭제
+                  </button>
+                </Box>
+              </div>
+            )}
             <Box>
-              <button>수정</button>
+              {/* <button
+                onClick={() => {
+                  setEdit(!edit);
+                }}
+              >
+                수정
+              </button>
               <button onClick={() => dispatch(__delComment(comment.id))}>
                 삭제
-              </button>
+              </button> */}
             </Box>
           </CommentBox2>
         );

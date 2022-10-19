@@ -4,6 +4,7 @@ import {
   addCommentApi,
   delCommentApi,
   getCommentsListApi,
+  updateCommentApi,
 } from "../../api/detailapi";
 
 export const __addComment = createAsyncThunk(
@@ -38,6 +39,14 @@ export const __delComment = createAsyncThunk(
   }
 );
 
+export const __updateComment = createAsyncThunk(
+  "updateComment",
+  async (payload, thunkAPI) => {
+    await updateCommentApi(payload.id, payload.edit, payload.nickname);
+    thunkAPI.dispatch(updateComment(payload));
+  }
+);
+
 const initialState = {
   comments: [],
 };
@@ -59,9 +68,17 @@ const comment = createSlice({
         (comment) => comment.id !== action.payload
       );
     },
+    updateComment: (state, action) => {
+      state.comments = state.comments.map((comment) => {
+        return comment.id === action.payload.id
+          ? { ...comment, body: action.payload.edit.body }
+          : comment;
+      });
+    },
   },
 });
 
-export const { addComment, getCommentList, delComment } = comment.actions;
+export const { addComment, getCommentList, delComment, updateComment } =
+  comment.actions;
 
 export default comment.reducer;

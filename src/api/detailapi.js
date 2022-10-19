@@ -14,3 +14,11 @@ export const getCommentsListApi = async () => {
 export const delCommentApi = async (id) => {
   await axios.delete(`${BASE_URL}/comments/${id}`);
 };
+
+export const updateCommentApi = async (id, comment, nickname) => {
+  console.log(id, comment, nickname);
+  await axios.put(`${BASE_URL}/comments/${id}`, {
+    nickname,
+    body: comment.body,
+  });
+};

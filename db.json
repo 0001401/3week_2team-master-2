@@ -7,5 +7,16 @@
       "isDone": false
     }
   ],
-  "comments": []
+  "comments": [
+    {
+      "nickname": "연습",
+      "body": "연습",
+      "id": 1
+    },
+    {
+      "nickname": "연습",
+      "body": "34",
+      "id": 2
+    }
+  ]
 }
