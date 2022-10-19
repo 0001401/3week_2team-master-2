@@ -15,12 +15,7 @@ function Update() {
 
   const onUpdatetHandler = (e) => {
     e.preventDefault();
-    // dispatch(__updateTodo({ id, title, content }));
-    if (title && content !== "") {
-      dispatch(__updateTodo({ id, title, content }));
-    } else {
-      return alert("내용을 입력하세요");
-    }
+    dispatch(__updateTodo({ id, title, content }));
     setTitle("");
     setContent("");
   };
@@ -36,6 +31,7 @@ function Update() {
             onChange={(e) => setTitle(e.target.value)}
             value={title || ""}
             placeholder="제목"
+            required
           />
           <br />
           <label></label>
@@ -45,6 +41,7 @@ function Update() {
             onChange={(e) => setContent(e.target.value)}
             value={content || ""}
             placeholder="내용을 적어주세요"
+            required
           />
           <Boxbtn>
             <button
@@ -55,7 +52,7 @@ function Update() {
             >
               취소
             </button>
-            <button type="button" onClick={(e) => onUpdatetHandler(e)}>
+            <button type="submit" onClick={(e) => onUpdatetHandler(e)}>
               수정하기
             </button>
           </Boxbtn>

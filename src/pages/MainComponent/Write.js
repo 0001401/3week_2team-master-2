@@ -21,11 +21,9 @@ function DetailList() {
     // API POST
     // ID
     const input = { id, title, content, isDone: false };
-    if (title && content !== "") {
-      dispatch(__addTodo(input));
-    } else {
-      return alert("내용을 입력하세요");
-    }
+
+    dispatch(__addTodo(input));
+
     // Init Empty Value
     ChangeTitleHandler("");
     ChangeContentHandler("");
@@ -42,6 +40,7 @@ function DetailList() {
             onChange={(e) => ChangeTitleHandler(e)}
             value={title || ""}
             placeholder="제목"
+            required
           />
           <br />
           <label></label>
@@ -51,6 +50,7 @@ function DetailList() {
             onChange={(e) => ChangeContentHandler(e)}
             value={content || ""}
             placeholder="내용을 적어주세요"
+            required
           />
           <Boxbtn>
             <button
