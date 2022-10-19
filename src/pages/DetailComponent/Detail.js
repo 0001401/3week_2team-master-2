@@ -13,13 +13,10 @@ function Detail() {
   const newData = useSelector((state) => state.main.main);
   const { id } = useParams();
   const main = newData.find((main) => main.id === Number(id));
-<<<<<<< HEAD
-=======
 
   useEffect(() => {
     dispatch(__getTodo());
   }, []);
->>>>>>> 971eadc78d41916e232a60d9cf23c495d2bdf4cb
 
   return (
     <Page>

@@ -1,29 +1,25 @@
 {
-<<<<<<< HEAD
-  "main": []
-=======
   "main": [
     {
       "id": 1,
-      "title": "ㅁㄴㅇ",
-      "content": "ㅁㄴㅇㅁㄴ",
+      "title": "asdf",
+      "content": "wefsdf",
       "isDone": false,
       "comments": []
     },
     {
       "id": 2,
-      "title": "ㅁㄴㅇ",
-      "content": "ㅁㄴㅇㅁㅁ11",
+      "title": "saf",
+      "content": "efsdf",
       "isDone": false,
       "comments": []
     },
     {
       "id": 3,
-      "title": "ㅁㄴㅇ",
-      "content": "ㅁㄴㅇ",
+      "title": "asdf",
+      "content": "sdfsefa",
       "isDone": false,
       "comments": []
     }
   ]
->>>>>>> 971eadc78d41916e232a60d9cf23c495d2bdf4cb
 }
