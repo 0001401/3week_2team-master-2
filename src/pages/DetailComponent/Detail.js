@@ -3,14 +3,20 @@ import styled from "styled-components";
 import Comment from "./Comment";
 import { FiCheck } from "react-icons/fi";
 import { useNavigate, useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { __getTodo } from "../../Redux/modules/main";
 
 function Detail() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const newData = useSelector((state) => state.main.main);
   const { id } = useParams();
   const main = newData.find((main) => main.id === Number(id));
-  console.log(typeof id);
+
+  useEffect(() => {
+    dispatch(__getTodo());
+  }, []);
 
   return (
     <Page>

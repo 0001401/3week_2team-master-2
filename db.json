@@ -2,37 +2,24 @@
   "main": [
     {
       "id": 1,
-      "title": "ㅁ",
-      "content": "ㅁ",
+      "title": "ㅁㄴㅇ",
+      "content": "ㅁㄴㅇㅁㄴ",
       "isDone": false,
-      "comments": [
-        {
-          "nickname": "ㅁ",
-          "body": "ㅁ",
-          "cardId": "1",
-          "id": 1
-        },
-        {
-          "nickname": "ㅁ",
-          "body": "ㅁ",
-          "cardId": "1",
-          "id": 2
-        }
-      ]
+      "comments": []
     },
     {
       "id": 2,
-      "title": "234",
-      "content": "234",
+      "title": "ㅁㄴㅇ",
+      "content": "ㅁㄴㅇㅁㅁ11",
       "isDone": false,
-      "comments": [
-        {
-          "nickname": "ㅁ",
-          "body": "ㅁ",
-          "cardId": "2",
-          "id": 1
-        }
-      ]
+      "comments": []
+    },
+    {
+      "id": 3,
+      "title": "ㅁㄴㅇ",
+      "content": "ㅁㄴㅇ",
+      "isDone": false,
+      "comments": []
     }
   ]
 }
