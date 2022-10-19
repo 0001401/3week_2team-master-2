@@ -2,13 +2,19 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { __addComment, __getCommentList } from "../../Redux/modules/detail";
+import {
+  __delComment,
+  __addComment,
+  __getCommentList,
+  __updateComment,
+} from "../../Redux/modules/detail";
 
 function Comment() {
   const dispatch = useDispatch();
-
-  const init = { nickname: "", body: "" };
+  const init = { nickname: "", body: "", cardId: 0 };
   const [comment, setComment] = useState(init);
+  const [edit, setEdit] = useState(false);
+  const [commentEdit, setCommentEdit] = useState("");
 
   const comments = useSelector((state) => state.detail.comments);
   console.log(comments);
@@ -35,6 +41,7 @@ function Comment() {
         onSubmit={(e) => {
           e.preventDefault();
           dispatch(__addComment(comment));
+          // setComment(init);
         }}
       >
         <Label>닉네임</Label>
@@ -49,11 +56,64 @@ function Comment() {
         <button>Add</button>
       </form>
       {comments.map((comment) => {
+        const { id } = comment;
         return (
-          <CommentBox2>
+          <CommentBox2 key={id}>
             <h4 key={comment?.id}>{comment.nickname}</h4>
-            <p>{comment.body}</p>
-            <p>&nbsp;수정/삭제</p>
+            {edit ? (
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  console.log("submit");
+                  setCommentEdit(comment.body);
+                  setEdit(!edit);
+                  dispatch(
+                    __updateComment({
+                      id: comment.id,
+                      nickname: comment.nickname,
+                      edit: { body: commentEdit },
+                    })
+                  );
+                  // setEdit(false);
+                }}
+              >
+                <input
+                  value={commentEdit}
+                  onChange={(e) => setCommentEdit(e.target.value)}
+                />
+                <Box>
+                  <button type="submit">수정</button>
+                </Box>
+              </form>
+            ) : (
+              <div>
+                <p>{comment.body}</p>
+                <Box>
+                  <button
+                    onClick={() => {
+                      setEdit(!edit);
+                    }}
+                  >
+                    수정
+                  </button>
+                  <button onClick={() => dispatch(__delComment(comment.id))}>
+                    삭제
+                  </button>
+                </Box>
+              </div>
+            )}
+            <Box>
+              {/* <button
+                onClick={() => {
+                  setEdit(!edit);
+                }}
+              >
+                수정
+              </button>
+              <button onClick={() => dispatch(__delComment(comment.id))}>
+                삭제
+              </button> */}
+            </Box>
           </CommentBox2>
         );
       })}
@@ -98,6 +158,16 @@ const Input2 = styled.input`
 
 const Label = styled.label`
   margin-left: 40px;
+`;
+
+const Box = styled.div`
+  & button {
+    border-radius: 10px;
+    background-color: white;
+    width: 40px;
+    height: 25px;
+    margin-left: 5px;
+  }
 `;
 
 const CommentBox2 = styled.div`

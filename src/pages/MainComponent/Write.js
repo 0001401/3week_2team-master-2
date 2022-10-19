@@ -12,23 +12,23 @@ function DetailList() {
   const [content, ChangeContentHandler] = useInput("");
 
   // const id = new Date();
-  const id = main[main.length - 1]?.id + 1 || 0;
+  const id = main[main.length - 1]?.id + 1 || 1;
   const dispatch = useDispatch();
 
   //추가하기
   const onSubmitHandler = (e) => {
     e.preventDefault();
-
+    // API POST
     // ID
     const input = { id, title, content, isDone: false };
-
-    // API POST
-    dispatch(__addTodo(input));
-
+    if (title && content !== "") {
+      dispatch(__addTodo(input));
+    } else {
+      return alert("내용을 입력하세요");
+    }
     // Init Empty Value
     ChangeTitleHandler("");
     ChangeContentHandler("");
-    console.log(input);
   };
 
   return (
