@@ -2,15 +2,15 @@
   "main": [
     {
       "id": 1,
-      "title": "ㅁㄴㄹ",
-      "content": "ㅁㄴㄹ",
+      "title": "asdf",
+      "content": "wefsdf",
       "isDone": false,
       "comments": []
     },
     {
       "id": 2,
-      "title": "ㅁㄴㅇ",
-      "content": "ㅁㄴㅇㅁㄴㅇ",
+      "title": "saf",
+      "content": "efsdf",
       "isDone": false,
       "comments": [
         {
@@ -23,22 +23,8 @@
     },
     {
       "id": 3,
-      "title": "24124",
-      "content": "124124124",
-      "isDone": false,
-      "comments": [
-        {
-          "nickname": "123",
-          "body": "123zxczcx",
-          "cardId": "3",
-          "id": 1
-        }
-      ]
-    },
-    {
-      "id": 4,
-      "title": "sad",
-      "content": "asdasdad",
+      "title": "asdf",
+      "content": "sdfsefa",
       "isDone": false,
       "comments": []
     }
