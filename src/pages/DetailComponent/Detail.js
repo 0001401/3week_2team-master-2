@@ -10,7 +10,6 @@ function Detail() {
   const newData = useSelector((state) => state.main.main);
   const { id } = useParams();
   const main = newData.find((main) => main.id === Number(id));
-  console.log(typeof id);
 
   return (
     <Page>

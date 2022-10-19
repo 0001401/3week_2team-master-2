@@ -1,10 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import {
   addCommentApi,
-  getCommentsListApi,
   delCommentApi,
   updateCommentApi,
-  getCommentsListApiTest,
+  getCommentsListApi,
 } from "../../api/detailapi";
 
 export const __addComment = createAsyncThunk(
@@ -12,7 +11,7 @@ export const __addComment = createAsyncThunk(
   async (payload, thunkAPI) => {
     // 해당 카드의 commentList 불러오기
     const { cardId } = payload;
-    const res = await getCommentsListApiTest(cardId);
+    const res = await getCommentsListApi(cardId);
     const commentList = res.comments;
     commentList.push(payload);
     await addCommentApi(cardId, commentList);
@@ -20,11 +19,10 @@ export const __addComment = createAsyncThunk(
   }
 );
 
-// 수정부분
 export const __getCommentList = createAsyncThunk(
   "getComments",
   async (payload, thunkAPI) => {
-    const res = await getCommentsListApiTest(payload);
+    const res = await getCommentsListApi(payload);
     const commentLists = res.comments;
     thunkAPI.dispatch(getCommentList(commentLists));
   }
@@ -33,16 +31,30 @@ export const __getCommentList = createAsyncThunk(
 export const __delComment = createAsyncThunk(
   "delComment",
   async (payload, thunkAPI) => {
-    await delCommentApi(payload);
-    thunkAPI.dispatch(delComment(payload));
+    const { cardId, id } = payload;
+    const res = await getCommentsListApi(cardId);
+    const commentList = res.comments;
+    const updatedCommentList = commentList.filter((item) => {
+      return item.id !== id;
+    });
+    await delCommentApi(cardId, updatedCommentList);
+    thunkAPI.dispatch(delComment(updatedCommentList));
   }
 );
 
 export const __updateComment = createAsyncThunk(
   "updateComment",
   async (payload, thunkAPI) => {
-    await updateCommentApi(payload.id, payload.edit, payload.nickname);
-    thunkAPI.dispatch(updateComment(payload));
+    console.log(payload);
+    const { cardId, id } = payload;
+    const res = await getCommentsListApi(cardId);
+    const commentList = res.comments;
+    const updatedList = commentList.filter((item) => {
+      return item.id !== id;
+    });
+    updatedList.push(payload);
+    await updateCommentApi(cardId, updatedList);
+    thunkAPI.dispatch(updateComment(updatedList));
   }
 );
 
@@ -61,16 +73,10 @@ const comment = createSlice({
       state.comments = action.payload;
     },
     delComment: (state, action) => {
-      state.comments = state.comments.filter(
-        (comment) => comment.id !== action.payload
-      );
+      state.comments = action.payload;
     },
     updateComment: (state, action) => {
-      state.comments = state.comments.map((comment) => {
-        return comment.id === action.payload.id
-          ? { ...comment, body: action.payload.edit.body }
-          : comment;
-      });
+      state.comments = action.payload;
     },
   },
 });

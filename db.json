@@ -1,38 +1,3 @@
 {
-  "main": [
-    {
-      "id": 1,
-      "title": "ㅁ",
-      "content": "ㅁ",
-      "isDone": false,
-      "comments": [
-        {
-          "nickname": "ㅁ",
-          "body": "ㅁ",
-          "cardId": "1",
-          "id": 1
-        },
-        {
-          "nickname": "ㅁ",
-          "body": "ㅁ",
-          "cardId": "1",
-          "id": 2
-        }
-      ]
-    },
-    {
-      "id": 2,
-      "title": "ㅇ",
-      "content": "ㅇ",
-      "isDone": false,
-      "comments": [
-        {
-          "nickname": "ㅁ",
-          "body": "ㅁ",
-          "cardId": "2",
-          "id": 1
-        }
-      ]
-    }
-  ]
+  "main": []
 }
