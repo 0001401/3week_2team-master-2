@@ -15,13 +15,10 @@ function Update() {
 
   const onUpdatetHandler = (e) => {
     e.preventDefault();
-    // dispatch(__updateTodo({ id, title, content }));
-    if (title && content !== "") {
-      dispatch(__updateTodo({ id, title, content }));
-      navigate("/");
-    } else {
-      return alert("내용을 입력하세요");
-    }
+
+    dispatch(__updateTodo({ id, title, content }));
+    navigate("/");
+
     setTitle("");
     setContent("");
   };
@@ -37,6 +34,7 @@ function Update() {
             onChange={(e) => setTitle(e.target.value)}
             value={title || ""}
             placeholder="제목"
+            required
           />
           <br />
           <label></label>
@@ -46,6 +44,7 @@ function Update() {
             onChange={(e) => setContent(e.target.value)}
             value={content || ""}
             placeholder="내용을 적어주세요"
+            required
           />
           <Boxbtn>
             <button
