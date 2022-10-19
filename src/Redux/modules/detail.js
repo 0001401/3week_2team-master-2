@@ -2,30 +2,31 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import {
   addCommentApi,
   getCommentsListApi,
-
   delCommentApi,
-
   updateCommentApi,
-
+  getCommentsListApiTest,
 } from "../../api/detailapi";
 
 export const __addComment = createAsyncThunk(
-  "addCommentThunk",
+  "addComment",
   async (payload, thunkAPI) => {
-    await addCommentApi(payload);
-    thunkAPI.dispatch(addComment(payload));
-    // 주석을 사용하면은 리듀서가 필요가 없다
-    // const list = await getCommentsListApi();
-    // console.log(list);
-    // thunkAPI.dispatch(getCommentList(list));
+    // 해당 카드의 commentList 불러오기
+    const { cardId } = payload;
+    const res = await getCommentsListApiTest(cardId);
+    const commentList = res.comments;
+    commentList.push(payload);
+    await addCommentApi(cardId, commentList);
+    thunkAPI.dispatch(addComment(commentList));
   }
 );
 
+// 수정부분
 export const __getCommentList = createAsyncThunk(
-  "addCommentList",
-  async (_, thunkAPI) => {
-    const list = await getCommentsListApi();
-    thunkAPI.dispatch(getCommentList(list));
+  "getComments",
+  async (payload, thunkAPI) => {
+    const res = await getCommentsListApiTest(payload);
+    const commentLists = res.comments;
+    thunkAPI.dispatch(getCommentList(commentLists));
   }
 );
 
@@ -34,10 +35,6 @@ export const __delComment = createAsyncThunk(
   async (payload, thunkAPI) => {
     await delCommentApi(payload);
     thunkAPI.dispatch(delComment(payload));
-    // 주석을 사용하면은 리듀서가 필요가 없다
-    // const list = await getCommentsListApi();
-    // console.log(list);
-    // thunkAPI.dispatch(getCommentList(list));
   }
 );
 
@@ -58,9 +55,7 @@ const comment = createSlice({
   initialState,
   reducers: {
     addComment: (state, action) => {
-      const id = state.comments[state.comments.length - 1]?.id + 1 || 1;
-      const commentCard = { ...action.payload, id };
-      state.comments.push(commentCard);
+      state.comments = action.payload;
     },
     getCommentList: (state, action) => {
       state.comments = action.payload;

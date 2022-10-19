@@ -20,7 +20,7 @@ function DetailList() {
     e.preventDefault();
     // API POST
     // ID
-    const input = { id, title, content, isDone: false };
+    const input = { id, title, content, isDone: false, comments: [] };
     if (title && content !== "") {
       dispatch(__addTodo(input));
     } else {
@@ -29,6 +29,7 @@ function DetailList() {
     // Init Empty Value
     ChangeTitleHandler("");
     ChangeContentHandler("");
+    navigate("/");
   };
 
   return (

@@ -2,8 +2,8 @@ import axios from "axios";
 
 const BASE_URL = "http://localhost:3030";
 
-export const addCommentApi = async (comment) => {
-  await axios.post(`${BASE_URL}/comments`, comment);
+export const addCommentApi = async (cardId, commentList) => {
+  await axios.patch(`${BASE_URL}/main/${cardId}`, { comments: commentList });
 };
 
 export const getCommentsListApi = async () => {
@@ -21,4 +21,10 @@ export const updateCommentApi = async (id, comment, nickname) => {
     nickname,
     body: comment.body,
   });
+};
+
+// 수정부분
+export const getCommentsListApiTest = async (cardId) => {
+  const res = await axios.get(`${BASE_URL}/main/${cardId}`);
+  return res.data;
 };

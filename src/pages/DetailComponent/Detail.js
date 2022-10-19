@@ -29,7 +29,7 @@ function Detail() {
         >
           수정하기
         </button>
-        <Comment />
+        <Comment cardId={id} />
       </WriteBox>
     </Page>
   );

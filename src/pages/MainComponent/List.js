@@ -1,11 +1,13 @@
 // 작성된 글들이 목록 형식으로 보여질 페이지입니다
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { __deleteTodo, __getTodo } from "../../Redux/modules/main";
 
 function List() {
+  const { pathname } = useLocation();
+
   const navigate = useNavigate();
   const { main } = useSelector((state) => state.main);
   const dispatch = useDispatch();
@@ -16,7 +18,7 @@ function List() {
 
   useEffect(() => {
     dispatch(__getTodo());
-  }, [dispatch]);
+  }, [dispatch, pathname]);
 
   return (
     <MainBox>

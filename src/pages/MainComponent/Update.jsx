@@ -18,6 +18,7 @@ function Update() {
     // dispatch(__updateTodo({ id, title, content }));
     if (title && content !== "") {
       dispatch(__updateTodo({ id, title, content }));
+      navigate("/");
     } else {
       return alert("내용을 입력하세요");
     }

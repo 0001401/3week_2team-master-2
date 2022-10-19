@@ -2,58 +2,37 @@
   "main": [
     {
       "id": 1,
-      "title": "1",
-      "content": "1",
-      "isDone": false
+      "title": "ㅁ",
+      "content": "ㅁ",
+      "isDone": false,
+      "comments": [
+        {
+          "nickname": "ㅁ",
+          "body": "ㅁ",
+          "cardId": "1",
+          "id": 1
+        },
+        {
+          "nickname": "ㅁ",
+          "body": "ㅁ",
+          "cardId": "1",
+          "id": 2
+        }
+      ]
     },
     {
-      "id": 7,
-      "title": "21분",
-      "content": "12시",
-      "isDone": false
-    },
-    {
-      "id": 9,
-      "title": "12시",
-      "content": "19일",
-      "isDone": false
-    },
-    {
-      "id": 11,
-      "title": "ㅁㄴㅇ",
-      "content": "ㅁㄴㅇ",
-      "isDone": false
-    },
-    {
-      "id": 13,
-      "title": "ㄴㄴㄴ",
-      "content": "ㅇㅇㅇ",
-      "isDone": false
-    },
-    {
-      "id": 15,
-      "title": "10월 19일",
-      "content": "수정했습니다.",
-      "isDone": false
-    },
-    {
-      "id": 18,
-      "title": "asdasdaaa",
-      "content": "asd",
-      "isDone": false
-    }
-  ],
-  "comments": [
-    {
-      "nickname": "연습",
-      "body": "연습",
-      "id": 1
-    },
-    {
-      "nickname": "연습",
-      "body": "34",
-      "id": 2
+      "id": 2,
+      "title": "ㅇ",
+      "content": "ㅇ",
+      "isDone": false,
+      "comments": [
+        {
+          "nickname": "ㅁ",
+          "body": "ㅁ",
+          "cardId": "2",
+          "id": 1
+        }
+      ]
     }
   ]
 }
-

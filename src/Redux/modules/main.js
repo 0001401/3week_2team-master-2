@@ -22,7 +22,7 @@ export const __addTodo = createAsyncThunk(
   "addTodo",
   async (payload, thunkAPI) => {
     const { data } = await addMainApi(payload);
-    thunkAPI.dispatch(getTodo(data));
+    thunkAPI.dispatch(addTodo(data));
   }
 );
 
@@ -51,8 +51,11 @@ const mainSlice = createSlice({
     getTodo: (state, action) => {
       state.main = action.payload;
     },
+    addTodo: (state, action) => {
+      state.main = state.main.push(action.payload);
+    },
   },
 });
 
-export const { getTodo, findTodo } = mainSlice.actions;
+export const { getTodo, addTodo } = mainSlice.actions;
 export default mainSlice.reducer;
