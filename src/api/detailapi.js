@@ -13,6 +13,7 @@ export const getCommentsListApi = async () => {
 
 export const delCommentApi = async (id) => {
   await axios.delete(`${BASE_URL}/comments/${id}`);
+  console.log(id);
 };
 
 export const updateCommentApi = async (id, comment, nickname) => {

@@ -1,8 +1,8 @@
 // 작성된 글들이 목록 형식으로 보여질 페이지입니다
+import styled from "styled-components";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
-import styled from "styled-components";
 import { __deleteTodo, __getTodo } from "../../Redux/modules/main";
 
 function List() {
