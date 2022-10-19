@@ -9,7 +9,8 @@ function Detail() {
   const navigate = useNavigate();
   const newData = useSelector((state) => state.main.main);
   const { id } = useParams();
-  const main = newData.find((main) => main.id == id);
+  const main = newData.find((main) => main.id === Number(id));
+  console.log(typeof id);
 
   return (
     <Page>
