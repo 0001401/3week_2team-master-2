@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 const Button = (props) => {
   const { text } = props;
-  console.log(props.inline);
   return <Btn {...props}>{text}</Btn>;
 };
 
