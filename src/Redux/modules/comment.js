@@ -45,7 +45,6 @@ export const __delComment = createAsyncThunk(
 export const __updateComment = createAsyncThunk(
   "updateComment",
   async (payload, thunkAPI) => {
-    console.log(payload);
     const { cardId, id } = payload;
     const res = await getCommentsListApi(cardId);
     const commentList = res.comments;
