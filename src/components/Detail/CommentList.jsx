@@ -60,7 +60,6 @@ function CommentList({ cardId }) {
       {comments.length !== 0 &&
         comments.map((comment) => {
           const { id } = comment;
-
           return <CommentListItem key={id} comment={comment} />;
         })}
     </CommentBox>
