@@ -4,7 +4,6 @@ import Write from "../pages/Write";
 import Main from "../pages/Main";
 import Detail from "../pages/Detail";
 import Update from "../pages/Update";
-import Test from "../Test";
 
 const Router = () => {
   return (
@@ -14,7 +13,6 @@ const Router = () => {
         <Route path="/write" element={<Write />} />
         <Route path="/detail/:id" element={<Detail />} />
         <Route path="/update/:id" element={<Update />} />
-        <Route path="/test" element={<Test />} />
         <Route path="/*" element={<Main />} />
       </Routes>
     </BrowserRouter>
