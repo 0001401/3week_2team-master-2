@@ -1,32 +1,5 @@
 {
-  "main": [
-    {
-      "id": 1,
-      "title": "asdf",
-      "content": "wefsdf",
-      "isDone": false,
-      "comments": []
-    },
-    {
-      "id": 2,
-      "title": "saf",
-      "content": "efsdf",
-      "isDone": false,
-      "comments": [
-        {
-          "nickname": "",
-          "body": "",
-          "cardId": "2",
-          "id": 1
-        }
-      ]
-    },
-    {
-      "id": 3,
-      "title": "asdf",
-      "content": "sdfsefa",
-      "isDone": false,
-      "comments": []
-    }
-  ]
+
+  "main": []
 }
+

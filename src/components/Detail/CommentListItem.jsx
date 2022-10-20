@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { __updateComment, __delComment } from "../../Redux/modules/comment";
+import Button from "../../elements/Button";
 
 const CommentListItem = ({ comment }) => {
   const [editedComment, setEditedComment] = useState();
@@ -44,17 +45,36 @@ const CommentListItem = ({ comment }) => {
       {isEdit ? (
         <form onSubmit={(e) => handleEdit(e)}>
           <input value={editInput} onChange={(e) => handleOnChange(e)} />
-          <Box>
-            <button type="submit">수정</button>
-          </Box>
+          <Button
+            bgColor="white"
+            width="40px"
+            height="25px"
+            text={"수정"}
+            inline=" border-radius: 10px; margin-left: 5px;"
+            type="submit"
+          />
         </form>
       ) : (
         <div>
           <p>{comment.body}</p>
-          <Box>
-            <button onClick={handleOpen}>수정</button>
-            <button onClick={handleDelete}>삭제</button>
-          </Box>
+          <Button
+            bgColor="white"
+            width="40px"
+            height="25px"
+            text={"수정"}
+            inline=" border-radius: 10px; margin-left: 5px;"
+            type="button"
+            onClick={handleOpen}
+          />
+          <Button
+            bgColor="white"
+            width="40px"
+            height="25px"
+            text={"삭제"}
+            inline=" border-radius: 10px; margin-left: 5px;"
+            type="button"
+            onClick={handleDelete}
+          />
         </div>
       )}
     </CommentBox2>
@@ -74,14 +94,14 @@ const CommentBox2 = styled.div`
     max-width: 20rem;
   }
 `;
-const Box = styled.div`
-  & button {
-    border-radius: 10px;
-    background-color: white;
-    width: 40px;
-    height: 25px;
-    margin-left: 5px;
-  }
-`;
+// const Box = styled.div`
+//   & button {
+//     border-radius: 10px;
+//     background-color: white;
+//     width: 40px;
+//     height: 25px;
+//     margin-left: 5px;
+//   }
+// `;
 
 export default CommentListItem;
