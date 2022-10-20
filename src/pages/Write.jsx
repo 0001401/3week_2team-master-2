@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { __addTodo } from "../Redux/modules/main";
 import useInput from "../hooks/useInput";
+import Button from "../elements/Button";
 
 function DetailList() {
   const navigate = useNavigate();
@@ -54,15 +55,25 @@ function DetailList() {
             required
           />
           <Boxbtn>
-            <button
+            <Button
+              bgColor="rgb(249, 223, 144, 0.8)"
+              width="80px"
+              height="30px"
+              text={"취소"}
+              inline="border: none; border-radius: 20px; margin-left: 20px; "
               type="button"
               onClick={(e) => {
                 navigate("/");
               }}
-            >
-              취소
-            </button>
-            <button type="submit">작성하기</button>
+            />
+            <Button
+              bgColor="rgb(249, 223, 144, 0.8)"
+              width="80px"
+              height="30px"
+              text={"작성하기"}
+              inline="border: none; border-radius: 20px; margin-left: 20px; "
+              type="submit"
+            />
           </Boxbtn>
         </form>
       </Box>
@@ -118,14 +129,6 @@ const Boxbtn = styled.div`
   margin-top: 50px;
   display: flex;
   justify-content: space-between;
-  & button {
-    border: none;
-    background-color: rgb(249, 223, 144, 0.8);
-    width: 80px;
-    height: 30px;
-    margin-left: 20px;
-    border-radius: 20px;
-  }
 `;
 
 export default DetailList;

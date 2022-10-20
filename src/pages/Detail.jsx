@@ -6,6 +6,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { __getTodo } from "../Redux/modules/main";
+import Button from "../elements/Button";
 
 function Detail() {
   const navigate = useNavigate();
@@ -28,13 +29,17 @@ function Detail() {
         ></Icon1>
         <h2>{main?.title}</h2>
         <Body>{main?.content}</Body>
-        <button
+        <Button
+          bgColor="rgb(249, 223, 144, 0.8)"
+          width="80px"
+          height="25px"
+          text={"수정하기"}
+          inline="border: none; border-radius: 10px; margin-left: 20px; float: right; margin: 0px 10px 0px 0px;"
+          type="button"
           onClick={() => {
             navigate("/update/" + id);
           }}
-        >
-          수정하기
-        </button>
+        />
         <CommentList cardId={id} />
       </WriteBox>
     </Page>

@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
 import { __deleteTodo, __getTodo } from "../../Redux/modules/main";
+import Button from "../../elements/Button";
 
 function List() {
   const { pathname } = useLocation();
@@ -27,17 +28,25 @@ function List() {
             return (
               <ListBox key={main.id} id={main.id}>
                 <Button
+                  bgColor="rgb(249, 223, 144, 0.8)"
+                  width="80px"
+                  height="25px"
+                  text={"더보기"}
+                  inline="border: none; border-radius: 10px; margin: 30px 10px 0px 0px; float: right;"
                   onClick={() => {
                     navigate("/detail/" + main.id);
                   }}
-                >
-                  더보기
-                </Button>
+                />
                 <h2>{main.title}</h2>
                 <p>{main.content}</p>
-                <button onClick={() => onDeleteHandler(main.id)}>
-                  삭제하기
-                </button>
+                <Button
+                  bgColor="rgb(249, 223, 144, 0.8)"
+                  width="80px"
+                  height="25px"
+                  text={"삭제하기"}
+                  inline="border: none; border-radius: 10px; margin: 30px 10px 0px 0px; float: right;"
+                  onClick={() => onDeleteHandler(main.id)}
+                />
               </ListBox>
             );
           })
@@ -66,16 +75,6 @@ const ListBox = styled.div`
     margin: 20px 0px 20px 20px;
     font-size: 13px;
   }
-`;
-
-const Button = styled.button`
-  background-color: rgb(249, 223, 144, 0.8);
-  border: none;
-  border-radius: 10px;
-  width: 80px;
-  height: 25px;
-  float: right;
-  margin: 150px 25px 0px 0px;
 `;
 
 export default List;
