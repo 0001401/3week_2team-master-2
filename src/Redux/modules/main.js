@@ -4,7 +4,7 @@ import {
   addMainApi,
   deleteMAinApi,
   updateMAinApi,
-} from "../../api/mainapi";
+} from "../../api/mainApi";
 
 const initialState = {
   main: [],
